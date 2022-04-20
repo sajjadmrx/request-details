@@ -10,6 +10,18 @@
   ],
   "author": "sajjadmrx",
   "license": "ISC",
+  "kaywords": [
+    "request",
+    "details",
+    "http",
+    "ip",
+    "request-details",
+    "express",
+    "os",
+    "browser",
+    "node",
+    "ts-ip"
+  ],
   "devDependencies": {
     "@types/node": "^17.0.23",
     "@types/ua-parser-js": "^0.7.36"
