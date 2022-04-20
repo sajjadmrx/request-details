@@ -1,7 +1,7 @@
 {
-  "name": "request-detail",
+  "name": "request-details",
   "version": "1.0.0",
-  "description": "show request detail",
+  "description": "show request details",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [

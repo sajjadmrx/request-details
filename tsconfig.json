@@ -12,7 +12,6 @@
     "sourceMap": true,
     "outDir": "dist",
     "typeRoots": [
-      "types",
       "node_modules/@types",
     ],
   },
