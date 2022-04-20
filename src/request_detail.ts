@@ -4,7 +4,16 @@ import I_iplocate from './common/interfaces/iplocate.interface'
 import Iplocate from './plugins/iplocate.plugins'
 import 'ua-parser-js'
 import ua from './plugins/ua-parser-js.plugin'
+declare global {
 
+    namespace Express {
+
+        interface Request {
+            info: RequestDetail
+        }
+
+    }
+}
 class RequestDetail {
 
 
