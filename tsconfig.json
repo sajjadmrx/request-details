@@ -1,22 +1,25 @@
 {
   "compilerOptions": {
     "target": "es2016",
-    "module": "CommonJS",
-    "typeRoots": [
-      "./@types",
-      "node_modules/@types",
-    ],
-    "baseUrl": " src",
-    "outDir": "dist",
+    "module": "commonjs",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "typeRoots": [
+      "types",
+      "node_modules/@types",
+    ],
   },
   "include": [
-    "src/**/*"
+    "src"
   ],
   "exclude": [
-    "node_modules",
+    "node_modules"
   ]
 }

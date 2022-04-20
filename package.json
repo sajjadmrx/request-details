@@ -1,19 +1,14 @@
 {
   "name": "request-detail",
   "version": "1.0.0",
-  "description": "",
-  "main": "./dist",
-  "types": "@types/*",
-  "scripts": {
-    "build": "tsc"
-  },
+  "description": "show request detail",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "src/*",
-    "dist/*",
-    "@types/*"
+    "/dist",
+    "/types"
   ],
-  "module": "./dist/index.js",
-  "author": "",
+  "author": "sajjadmrx",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^17.0.23",

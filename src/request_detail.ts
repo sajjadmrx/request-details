@@ -5,7 +5,7 @@ import Iplocate from './plugins/iplocate.plugins'
 import 'ua-parser-js'
 import ua from './plugins/ua-parser-js.plugin'
 
-
+console.log("HELLO")
 class RequestDetail {
 
 
@@ -63,4 +63,4 @@ class RequestDetail {
 
 }
 
-export { RequestDetail } 
+export default RequestDetail
