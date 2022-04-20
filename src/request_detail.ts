@@ -54,7 +54,6 @@ class RequestDetail {
 
 
     static middleware(req: Request, res: Response, next: NextFunction) {
-        // req.detail = new RequestDetail(req);
         req.info = new RequestDetail(req);
         next()
     }
