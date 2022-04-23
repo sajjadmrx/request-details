@@ -17,4 +17,5 @@ project adheres to [Semantic Versioning](http://semver.org/).
 
   * Initial release
 
-[repo]: https://github.com/Automattic/node-canvas
+
+[repo]: https://github.com/sajjadmrx/request-details
