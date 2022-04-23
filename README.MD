@@ -5,22 +5,47 @@ A tiny Node.js module for retrieving a request's Details (ip,os,browser)
 
 ## ⌨️ Installation
 
-```sh
+```bash
 npm install request-details
 ```
 
-# Public Methods
-- getIpInfo
-- getOs
-- getBrowser
-- getDevice
-- getCPU
-- fetchUserAgent (Static)
-- getIpInfoByIp (Static)
-- middleware (Static)
+## ⚙️ Usage
+
+```js
+const RequestDetails = require('request-details').default;
+// in TypeScript:
+import RequestDetails from 'request-details';
+
+app.use(RequestDetails.middleware) // it will add the details to the request object, (Optional)
+
+// when you not use middleware:
+app.get('/',  (req, res) => {
+  const details = new RequestDetails(req);
+  console.log(details.getDevice())
+});
+```
+# 📦 Methods
+
+>  🔓 Public Methods
+<br />
+> 🔒 Private Methods
+<br /> 
+> 📍 Static Methods
+
+- <a id="a-link" href='#getIpInfo'>getIpInfo</a> 🔓  
+- <a id="a-link" href='#getOs' >getOs</a> 🔓 
+- <a id='a-link' href='#getBrowser'>getBrowser</a> 🔓
+- <a id='a-link' href='#getDevice'> getDevice</a> 🔓
+- <a id='a-link' href='#getCPU'>getCPU</a> 🔓
+- <a id='a-link' href='#fetchUserAgent'> fetchUserAgent</a>📍
+- <a id='a-link' href='#getIpInfoByIp'>getIpInfoByIp<a> 📍
+- <a id='a-link' href='#middleware'>middleware</a> 📍
+
+
 
 # ✨ Examples
-> Javascript
+> [![JavaScript](https://img.shields.io/badge/--F7DF1E?logo=javascript&logoColor=000)](https://www.javascript.com/)
+ Javascript
 ```js
 
 const express = require('express');
@@ -55,12 +80,14 @@ app.get('/browser', (req, res, next) => {
     res.json(BrDetails)
 })
 //end Middleware
-
-
 app.listen(3000)
 ```
 
-> TypeScript
+<br />
+<br />
+
+> [![TypeScript](https://img.shields.io/badge/--3178C6?logo=typescript&logoColor=ffffff)](https://www.typescriptlang.org/)
+ TypeScript
 ```ts
 import RequestDetail from 'request-details'
 import express, { Request, Response } from 'express'
@@ -104,6 +131,149 @@ app.get('/full', (req: Request, res: Response) => {
 
 
 app.listen(3000)
+```
 
 
+<div id="getIpInfo"></div>
+
+### getIpInfo (Promise)
+```json
+{
+    "ip": string,
+    "country": string,
+    "country_code": string,
+    "city": string,
+    "continent":string,
+    "latitude": double,
+    "longitude": double,
+    "time_zone": string,
+    "postal_code": string,
+    "org": string,
+    "asn": string,
+    "subdivision": string,
+    "subdivision2": string
+}
+```
+
+<div id="getOs"></div>
+
+### getOs
+```json
+{
+ "name": string,
+ "version": string 
+}
+```
+
+<div id='getBrowser'> </div>
+
+### getBrowser
+```json 
+{
+    "name": string,
+    "version": string
+}
+```
+
+<div id='getDevice'></div>
+
+### getDevice
+```json
+{
+    /**
+         * Determined dynamically
+         */
+        "model": string | undefined;
+
+        /**
+         * Possible type:
+         * console, mobile, tablet, smarttv, wearable, embedded
+         */
+        "type": string | undefined;
+
+        /**
+         * Possible vendor:
+         * Acer, Alcatel, Amazon, Apple, Archos, Asus, BenQ, BlackBerry, Dell, GeeksPhone,
+         * Google, HP, HTC, Huawei, Jolla, Lenovo, LG, Meizu, Microsoft, Motorola, Nexian,
+         * Nintendo, Nokia, Nvidia, Ouya, Palm, Panasonic, Polytron, RIM, Samsung, Sharp,
+         * Siemens, Sony-Ericsson, Sprint, Xbox, ZTE
+         */
+        "vendor": string | undefined;
+}
+```
+
+<div id='getCPU'></div>
+
+### getCPU
+```json
+{
+   "architecture": string | undefined;
+}
+```
+
+<div id='fetchUserAgent'></div>
+
+### fetchUserAgent 
+```js
+fetchUserAgent(req.headers['user-agent'])
+// output:
+ /// This will print an object structured like this:
+       /* {
+            ua: "",
+            browser: {
+                name: "",
+                version: "",
+                major: "" //@deprecated
+            },
+            engine: {
+                name: "",
+                version: ""
+            },
+            os: {
+                name: "",
+                version: ""
+            },
+            device: {
+                model: "",
+                type: "",
+                vendor: ""
+            },
+            cpu: {
+                architecture: ""
+            }
+        }
+    */
+```
+
+<div id='getIpInfoByIp'></div>
+
+### getIpInfoByIp (Promise)
+```js
+getIpInfoByIp("ip")
+// output:
+/*{
+  
+    "ip": string,
+    "country": string,
+    "country_code": string,
+    "city": string,
+    "continent":string,
+    "latitude": double,
+    "longitude": double,
+    "time_zone": string,
+    "postal_code": string,
+    "org": string,
+    "asn": string,
+    "subdivision": string,
+    "subdivision2": string
+ 
+}*/
+```
+
+
+<div id='middleware'></div>
+
+### middleware
+```js
+app.use(RequestDetail.middleware)
 ```
