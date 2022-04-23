@@ -27,9 +27,9 @@ app.get('/',  (req, res) => {
 # 📦 Methods
 
 >  🔓 Public Methods
-<br />
+>
 > 🔒 Private Methods
-<br /> 
+>
 > 📍 Static Methods
 
 - <a id="a-link" href='#getIpInfo'>getIpInfo</a> 🔓  
