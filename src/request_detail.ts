@@ -4,6 +4,7 @@ import I_iplocate from './common/interfaces/iplocate.interface'
 import Iplocate from './plugins/iplocate.plugins'
 import 'ua-parser-js'
 import ua from './plugins/ua-parser-js.plugin'
+import { IBrowser, ICPU, IDevice, IOS } from './common/interfaces/ua-parser-js.interface'
 declare global {
 
     namespace Express {
@@ -27,19 +28,19 @@ class RequestDetail {
         return new Iplocate().getIpInfo(ip)
     }
 
-    getOs(): UAParser.IOS {
+    getOs(): IOS {
         return ua(this.req.headers['user-agent']).os
     }
 
-    getBrowser(): UAParser.IBrowser {
+    getBrowser(): IBrowser {
         return ua(this.req.headers['user-agent']).browser
     }
 
-    getDevice(): UAParser.IDevice {
+    getDevice(): IDevice {
         return ua(this.req.headers['user-agent']).device
     }
 
-    getCPU(): UAParser.ICPU {
+    getCPU(): ICPU {
         return ua(this.req.headers['user-agent']).cpu
     }
 
