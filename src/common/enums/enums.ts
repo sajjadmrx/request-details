@@ -1,4 +1,3 @@
 export enum urls {
-    iplocate = 'https://www.iplocate.io/api/lookup/',
+  iplocate = "https://www.iplocate.io/api/lookup/",
 }
-

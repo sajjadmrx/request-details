@@ -1,2 +1,2 @@
-import RequestDetail from "./request_detail"
-export default RequestDetail
+import RequestDetail from "./request_detail";
+export default RequestDetail;
