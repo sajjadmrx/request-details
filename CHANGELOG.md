@@ -14,7 +14,7 @@ project adheres to [Semantic Versioning](http://semver.org/).
 1.0.4 / 2022-04-24
 ------------------
 ### Changed
- * [ua-parser-js.interface.ts](src/common/interfaces/ua-parser-js.interface.ts)
+ * [uaParser.interface.ts](src/common/interfaces/uaParser.interface.ts)
 
 1.0.3 / 2022-04-20
 ==================

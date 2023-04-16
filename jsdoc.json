@@ -1,0 +1,31 @@
+{
+  "opts": {
+    "destination": "./docs/",
+    "recurse": true,
+    "encoding": "utf8",
+    "verbose": true,
+    "template": "./node_modules/clean-jsdoc-theme",
+    "theme_opts": {
+      "default_theme": "dark"
+    }
+  },
+  "source": {
+    "include": [
+      ".",
+      "./README.md"
+    ],
+    "exclude": ["./node_modules","docs","out","coverage"]
+  },
+  "plugins": [
+    "plugins/markdown"
+  ],
+  "markdown": {
+    "hardwrap": false,
+    "idInHeadings": true
+  },
+  "templates": {
+    "default": {
+      "outputSourceFiles": false
+    }
+  }
+}

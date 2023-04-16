@@ -4,12 +4,23 @@ import I_iplocate from "./common/interfaces/iplocate.interface";
 import Iplocate from "./plugins/iplocate.plugins";
 import "ua-parser-js";
 import ua from "./plugins/ua-parser-js.plugin";
-import {
-  IBrowser,
-  ICPU,
-  IDevice,
-  IOS,
-} from "./common/interfaces/ua-parser-js.interface";
+import { Browser } from "./common/interfaces/browser.interface";
+import { Device } from "./common/interfaces/Device.interface";
+import { CPU } from "./common/interfaces/cpu.interface";
+import { OS } from "./common/interfaces/os.interface";
+
+/**
+ * Declare global namespace for Express module.
+ *
+ * @namespace Express
+ *
+ * @typedef {object} Request - Represents the incoming HTTP request object in Express.
+ *
+ * @property {RequestDetail} info - Custom property added to the Express Request object for storing request details.
+ *
+ * @memberof Express
+ * @alias Express.Request
+ */
 declare global {
   namespace Express {
     interface Request {
@@ -17,8 +28,19 @@ declare global {
     }
   }
 }
+
+/**
+ * Represents a class for handling request details in an Express application.
+ * @class
+ */
 class RequestDetail {
   protected ip: string;
+
+  /**
+   * Creates an instance of `RequestDetail` class.
+   * @constructor
+   * @param {Request} req - The Express request object.
+   */
   constructor(private req: Request) {
     this.ip = req.ip;
   }
@@ -28,10 +50,10 @@ class RequestDetail {
    * @returns {Promise<I_iplocate>} - A Promise that returns the information related to user's IP upon success
    *
    * @example
-   * ```js
+   *
    * const ipInfo = await requestDetail.getIpInfo();
    * console.log(ipInfo); // { ip: '127.0.0.1', country: 'US', city: 'New York', ... }
-   * ```
+   *
    */
   getIpInfo(): Promise<I_iplocate> {
     const ip = this.req.ip;
@@ -39,69 +61,64 @@ class RequestDetail {
   }
 
   /**
-   * Get the operating system (OS) information from the user agent
-   * @returns {IOS | null} - An object representing the OS information, or null if not available
-   *
+   * Get the operating system (OS) information from the user agent.
+   * @returns {OS | null} - An object representing the OS information, or null if not available.
    * @example
-   * ```js
    * const os = requestDetail.getOs();
    * console.log(os); // { name: 'Windows', version: '10' }
-   * ```
    */
-  getOs(): IOS | null {
+  getOs(): OS | null {
     return ua(this.req.headers["user-agent"])?.os || null;
   }
 
   /**
    * Get the browser information from the user agent
-   * @returns {IBrowser | null} - An object representing the browser information, or null if not available
+   * @returns {Browser | null} - An object representing the browser information, or null if not available
    *
    * @example
-   * ```js
+   *
    * const browser = requestDetail.getBrowser();
    * console.log(browser); // { name: 'Chrome', version: '58.0.3029.110' }
-   * ```
+   *
    */
-  getBrowser(): IBrowser | null {
+  getBrowser(): Browser | null {
+    // @ts-ignore
     return ua(this.req.headers["user-agent"])?.browser || null;
   }
 
   /**
    * Get the device information from the user agent
-   * @returns {IDevice | null} - An object representing the device information, or null if not available
+   * @returns {Device | null} - An object representing the device information, or null if not available
    *
    * @example
-   * ```js
+   *
    * const device = requestDetail.getDevice();
    * console.log(device); // { type: 'desktop', vendor: 'Unknown', model: 'Unknown' }
-   * ```
+   *
    */
-  getDevice(): IDevice | null {
+  getDevice(): Device | null {
     return ua(this.req.headers["user-agent"])?.device || null;
   }
 
   /**
    * Get the CPU information from the user agent
-   * @returns {ICPU | null} - An object representing the CPU information, or null if not available
+   * @returns {CPU | null} - An object representing the CPU information, or null if not available
    *
    * @example
-   * ```js
+   *
    * const cpu = requestDetail.getCPU();
    * console.log(cpu); // { architecture: 'amd64' }
-   * ```
+   *
    */
-  getCPU(): ICPU | null {
+  getCPU(): CPU | null {
     return ua(this.req.headers["user-agent"])?.cpu || null;
   }
 
   /**
-   *  Get user agent
-   * @param userAgent
-   *
+   * Get user agent.
+   * @param {string} userAgent - The user agent string.
    * @example
-   * ```js
    * fetchUserAgent(req.headers['user-agent'])
-   * ```
    */
   static get fetchUserAgent() {
     return ua;
@@ -113,10 +130,10 @@ class RequestDetail {
    * @returns {Promise<I_iplocate>} - A Promise that returns the information related to the specific IP address upon success
    *
    * @example
-   * ```js
+   *
    * const ipInfo = await RequestDetail.getIpInfo('192.168.0.1');
    * console.log(ipInfo); // { ip: '192.168.0.1', country: 'US', city: 'New York', ... }
-   * ```
+   *
    */
   static getIpInfoByIp(ip: string): Promise<I_iplocate> {
     return new Iplocate().getIpInfo(ip);
@@ -129,9 +146,9 @@ class RequestDetail {
    * @param {NextFunction} next - The Express next function
    *
    * @example
-   * ```js
+   *
    * app.use(RequestDetail.middleware);
-   * ```
+   *
    */
   static middleware(req: Request, res: Response, next: NextFunction) {
     req.info = new RequestDetail(req);
