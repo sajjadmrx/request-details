@@ -33,6 +33,7 @@
   "devDependencies": {
     "@types/jest": "^29.5.0",
     "@types/node": "^17.0.23",
+    "@types/supertest": "^2.0.12",
     "@types/ua-parser-js": "^0.7.36",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
@@ -40,7 +41,9 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.7",
-    "ts-jest": "^29.1.0"
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1"
   },
   "dependencies": {
     "@types/express": "^4.17.13",
@@ -51,6 +54,6 @@
     "ua-parser-js": "^1.0.2"
   },
   "scripts": {
-    "test:e2e": "jest"
+    "test": "jest"
   }
 }
