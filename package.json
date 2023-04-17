@@ -1,6 +1,6 @@
 {
   "name": "request-details",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "show request details",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,7 +22,7 @@
     "node",
     "ts-ip"
   ],
-  "homepage": "https://github.com/sajjadmrx/request-details",
+  "homepage": "https://sajjadmrx.github.io/request-details/",
   "bugs": {
     "url": "https://github.com/sajjadmrx/request-details/issues"
   },
