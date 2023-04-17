@@ -47,7 +47,9 @@ describe("RequestDetail", () => {
         .spyOn(Iplocate.prototype, "getIpInfo")
         .mockImplementation(async () => expectedIpInfo);
 
-      const requestDetail = new RequestDetail(req);
+      const requestDetail = new RequestDetail(req, {
+        iPlocateToken: "TEST",
+      });
       const ipInfo = await requestDetail.getIpInfo();
       expect(Iplocate.prototype.getIpInfo).toHaveBeenCalledWith("127.0.0.1");
       expect(ipInfo).toEqual(expectedIpInfo);

@@ -8,6 +8,7 @@ import { Browser } from "./common/interfaces/browser.interface";
 import { Device } from "./common/interfaces/Device.interface";
 import { CPU } from "./common/interfaces/cpu.interface";
 import { OS } from "./common/interfaces/os.interface";
+import { Options } from "./common/interfaces/options.interface";
 
 /**
  * Declare global namespace for Express module.
@@ -35,14 +36,18 @@ declare global {
  */
 class RequestDetail {
   protected ip: string;
+  private options: Options;
 
   /**
-   * Creates an instance of `RequestDetail` class.
+   * Creates an instance of the `RequestDetails` class.
+   *
    * @constructor
    * @param {Request} req - The Express request object.
+   * @param {Options} options - The options to configure the `RequestDetails` instance.
    */
-  constructor(private req: Request) {
+  constructor(private req: Request, options: Options = {}) {
     this.ip = req.ip;
+    this.options = options;
   }
 
   /**
@@ -57,7 +62,18 @@ class RequestDetail {
    */
   getIpInfo(): Promise<I_iplocate> {
     const ip = this.req.ip;
-    return new Iplocate().getIpInfo(ip);
+    return new Iplocate(this.options.iPlocateToken).getIpInfo(ip);
+  }
+
+  /**
+   * Sets the options for the `RequestDetails` instance.
+   *
+   * @method
+   * @param {Options} options - The options to set.
+   * @returns {void}
+   */
+  setOptions(options: Options): void {
+    this.options = options;
   }
 
   /**
@@ -127,6 +143,7 @@ class RequestDetail {
   /**
    * Get IP information for a specific IP address
    * @param {string} ip - The IP address
+   * @param {string | undefined} token - The [iplocate token](https://www.iplocate.io)
    * @returns {Promise<I_iplocate>} - A Promise that returns the information related to the specific IP address upon success
    *
    * @example
@@ -135,8 +152,8 @@ class RequestDetail {
    * console.log(ipInfo); // { ip: '192.168.0.1', country: 'US', city: 'New York', ... }
    *
    */
-  static getIpInfoByIp(ip: string): Promise<I_iplocate> {
-    return new Iplocate().getIpInfo(ip);
+  static getIpInfoByIp(ip: string, token?: string): Promise<I_iplocate> {
+    return new Iplocate(token).getIpInfo(ip);
   }
 
   /**
@@ -151,7 +168,7 @@ class RequestDetail {
    *
    */
   static middleware(req: Request, res: Response, next: NextFunction) {
-    req.info = new RequestDetail(req);
+    req.info = new RequestDetail(req, {});
     next();
   }
 }
