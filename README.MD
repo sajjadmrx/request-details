@@ -19,8 +19,9 @@ To use Request-Details in your Express application, you can import the RequestDe
 
 
 ```js
-const RequestDetails = require('request-details').default;
 // CommonJS:
+const RequestDetails = require('request-details').default;
+
 import RequestDetails from 'request-details';
 
 import express from "express";
